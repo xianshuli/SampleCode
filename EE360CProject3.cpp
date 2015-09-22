@@ -104,9 +104,6 @@ public:
         } else {
             sort(candidate.begin(), candidate.end(), CompareWeight());
         }
-//        for (auto i : candidate) {
-//            cout << "ID:" << i.processID << " " << i.depend_weight  << endl;
-//        }
     }
     void Find_Path_Visit(Process& u) {
         u.color = Gray;
@@ -171,7 +168,6 @@ public:
         for (auto &i : process_vec) {
             i.start = 0;
             i.finish = i.execution_time;
-//            i.depend_weight = i.execution_time;
         }
         unscheduled_process = process_vec;
         for (int i = 0; i < 3; ++i) {
@@ -206,7 +202,8 @@ public:
                             }
                         }
                     }
-//                    delete the element in the adj_list, actually don't need it since won't have the candidate process in adj_list
+                    //delete the element in the adj_list, actually don't need it
+                    //since won't have the candidate process in adj_list
                     for (auto it = unscheduled_process.begin(); it < unscheduled_process.end(); ++ it) {
                         for (auto it2 = it->adj_list.begin(); it2 < it->adj_list.end(); ++it2) {
                             if (*it2 == i->processID) {
@@ -217,13 +214,6 @@ public:
                     }
                     in_processor.erase(i);
                     --i;
-//                    for (auto j = in_processor.begin(); j < in_processor.end(); ++j) {
-//                        //remove from  in_processor
-//                        if (j->processID == i->processID) {
-//                            in_processor.erase(j);
-//                            --i;
-//                        }
-//                    }
                 }
             }
             FindCandidate();
@@ -252,7 +242,6 @@ int main(int argc, const char * argv[]) {
     Process p;
     Graph g;
     string s;
-    //    g.matrix = vector<vector<int>>(process_number + 1, vector<int>(process_number + 1));
     int number;
     vector<Process> process_vec;
     char garbage;
@@ -277,7 +266,6 @@ int main(int argc, const char * argv[]) {
         g.process_vec = process_vec;
     }
     g.ConstructGraph();
-//    g.ShowDependList();
     Graph g2 = g;
     g2.baseline = true;
     g.DFS();

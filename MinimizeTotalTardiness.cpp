@@ -89,14 +89,8 @@ bool LongestPath(Graph& g) {
     bool flag = DFS(g, Stack);
     while (!Stack.empty()) {
         auto u = Stack.top();
-//        cout << u.processID << " " << endl;
         Stack.pop();
         for (auto i : u.adj_list) {
-//            if(g.process_vec[i - 1].start < g.process_vec[u.processID - 1].start
-//               + g.process_vec[u.processID - 1].execution_time) {
-//                g.process_vec[i - 1].start = g.process_vec[u.processID - 1].start
-//                + g.process_vec[u.processID - 1].execution_time;
-//            }
             if(g.process_vec[i - 1].start < g.process_vec[u.processID - 1].start
                + g.process_vec[u.processID - 1].execution_time) {
                 g.process_vec[i - 1].start = g.process_vec[u.processID - 1].start
@@ -116,7 +110,6 @@ int main(int argc, const char * argv[]) {
     Process p;
     Graph g;
     string s;
-//    g.matrix = vector<vector<int>>(process_number + 1, vector<int>(process_number + 1));
     int number;
     vector<Process> process_vec;
     char garbage;
